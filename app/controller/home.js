@@ -1,9 +1,11 @@
-const { Controller } = require('egg');
+// app/controller/home.js
+
+const { Controller } = require("egg");
 
 class HomeController extends Controller {
   async index() {
     const { ctx } = this;
-    ctx.body = 'hi, egg';
+    ctx.body = "OK";
   }
 }
 
