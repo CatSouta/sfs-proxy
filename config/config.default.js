@@ -1,5 +1,8 @@
 /* eslint valid-jsdoc: "off" */
 
+const path = require("path");
+const fs = require("fs");
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -10,11 +13,22 @@ module.exports = (appInfo) => {
    **/
   const config = (exports = {});
 
-  // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + "_1724262577041_1188";
+  // 中间件配置
+  config.middleware = ["errorHandler"];
 
-  // add your middleware config here
-  config.middleware = [];
+  // 安全设置
+  config.security = {
+    csrf: {
+      enable: false, // 关闭 csrf 检测
+    },
+  };
+
+  // 站点文件配置
+  config.siteFile = {
+    "/favicon.ico": fs.readFileSync(
+      path.join(__dirname, "../app/public/favicon.ico")
+    ),
+  };
 
   return {
     ...config,

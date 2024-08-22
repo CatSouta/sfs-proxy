@@ -4,8 +4,5 @@
 module.exports = (app) => {
   const { router, controller } = app;
   router.get("/", controller.home.index);
-  router.get("/sfs", controller.notfound.index);
-  router.get("/sfs/", controller.notfound.index);
-  router.get("/sfs/*", controller.proxy.index);
-  router.get("/*", controller.notfound.index);
+  router.get(/^\/sfs\/(.+)$/, controller.proxy.index);
 };

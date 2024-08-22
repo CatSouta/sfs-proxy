@@ -10,7 +10,7 @@ class ProxyController extends Controller {
     const { ctx } = this;
     let uri = ctx.params[0]; // 传入 URI
     let finalUri, imageParams;
-    if (this.isImagePath(uri.split("@")[0])) {
+    if (this.isImagePath(uri.split("@")[0], 0)) {
       finalUri = uri.split("@")[0];
       imageParams = uri.split("@")[1];
     } else {
@@ -52,7 +52,7 @@ class ProxyController extends Controller {
         // 获取格式参数
         const format = imageParams.split(".")[1];
         // 检测需转换的是否为图片格式
-        if (!this.isImagePath(format)) {
+        if (!this.isImagePath(format, 1)) {
           ctx.body = {
             code: 400,
             message: "Incorrect conversion format",
@@ -96,7 +96,7 @@ class ProxyController extends Controller {
    * @param {string} filePath
    * @returns
    */
-  isImagePath(filePath) {
+  isImagePath(filePath, type) {
     const imageExtensions = [
       "jpg",
       "jpeg",
@@ -107,6 +107,9 @@ class ProxyController extends Controller {
       "bmp",
       "tiff",
     ];
+    if (type === 0) {
+      imageExtensions.push("svg");
+    }
     const extension = filePath.split(".").pop().toLowerCase();
     return imageExtensions.includes(extension);
   }
