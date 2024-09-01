@@ -1,8 +1,5 @@
 /* eslint valid-jsdoc: "off" */
 
-const path = require("path");
-const fs = require("fs");
-
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -21,13 +18,6 @@ module.exports = (appInfo) => {
     csrf: {
       enable: false, // 关闭 csrf 检测
     },
-  };
-
-  // 站点文件配置
-  config.siteFile = {
-    "/favicon.ico": fs.readFileSync(
-      path.join(__dirname, "../app/public/favicon.ico")
-    ),
   };
 
   return {
