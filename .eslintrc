@@ -1,4 +1,26 @@
 {
-  "extends": "eslint-config-egg",
-  "root": true
+  "extends": [
+    "eslint-config-egg",
+    "plugin:prettier/recommended"
+  ],
+  "root": true,
+  "plugins": ["prettier", "eslint-plugin-prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "printWidth": 120,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "endOfLine": "auto",
+        "arrowParens": "avoid"
+      }
+    ]
+  }
+
+
 }

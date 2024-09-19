@@ -11,6 +11,7 @@
     "egg": "^3.17.5",
     "egg-scripts": "2",
     "minio": "^8.0.1",
+    "prettier": "^3.3.3",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
